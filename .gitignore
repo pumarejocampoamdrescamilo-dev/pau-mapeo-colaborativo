@@ -1,0 +1,25 @@
+# Compilados y artefactos de construccion
+target/
+build/
+out/
+*.class
+*.war
+*.jar
+
+# IDE y editores
+.idea/
+.vscode/
+.settings/
+.classpath
+.project
+nbproject/
+
+# Credenciales y configuracion local (la clave va por variable de entorno)
+.env
+db.properties
+application-local.properties
+
+# Registros y temporales
+*.log
+*.tmp
+Thumbs.db
