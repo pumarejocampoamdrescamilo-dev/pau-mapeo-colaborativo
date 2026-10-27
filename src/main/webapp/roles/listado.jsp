@@ -1,7 +1,8 @@
 <%-- Archivo : roles/listado.jsp (MK-01)
-     HU/RF   : HU-02, HU-03 · RF-02, RF-03
+     HU/RF   : HU-02, HU-03, HU-36 · RF-02, RF-03, RF-36
      v1.0 2026-10-27  creacion (RF-02)
-     v1.1 2026-10-27  boton Editar por fila (RF-03) --%>
+     v1.1 2026-10-27  boton Editar por fila (RF-03)
+     v1.2 2026-10-27  Inactivar/Activar con aviso de RN-15 (RF-36) --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
@@ -40,7 +41,25 @@
           <td><c:out value="${r.nombre}"/></td>
           <td><c:out value="${r.descripcion}"/></td>
           <td class="${r.estado == 'ACTIVO' ? 'estado-activo' : 'estado-inactivo'}"><c:out value="${r.estado}"/></td>
-          <td><a class="boton pequeno" href="${pageContext.request.contextPath}/roles/editar?id=${r.idRol}">Editar</a></td>
+          <td><a class="boton pequeno" href="${pageContext.request.contextPath}/roles/editar?id=${r.idRol}">Editar</a>
+            <c:choose>
+              <c:when test="${r.estado == 'ACTIVO'}">
+                <form class="en-linea" method="post" action="${pageContext.request.contextPath}/roles/estado"
+                      onsubmit="return confirm('Al inactivar este rol ya no se podrá asignar a usuarios nuevos; los usuarios que ya lo tienen lo conservan. ¿Desea continuar?');">
+                  <input type="hidden" name="id" value="<c:out value='${r.idRol}'/>">
+                  <input type="hidden" name="estado" value="INACTIVO">
+                  <button type="submit" class="pequeno secundario">Inactivar</button>
+                </form>
+              </c:when>
+              <c:otherwise>
+                <form class="en-linea" method="post" action="${pageContext.request.contextPath}/roles/estado">
+                  <input type="hidden" name="id" value="<c:out value='${r.idRol}'/>">
+                  <input type="hidden" name="estado" value="ACTIVO">
+                  <button type="submit" class="pequeno">Activar</button>
+                </form>
+              </c:otherwise>
+            </c:choose>
+          </td>
         </tr>
       </c:forEach>
       <c:if test="${empty roles}">

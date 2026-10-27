@@ -1,12 +1,14 @@
 /* Archivo : RolServlet.java
- * HU/RF   : HU-01, HU-02, HU-03 · RF-01, RF-02, RF-03
+ * HU/RF   : HU-01, HU-02, HU-03, HU-36 · RF-01, RF-02, RF-03, RF-36
  * v1.0 2026-10-27  creacion (RF-01)
  * v1.1 2026-10-27  rutas exactas: /roles/* capturaba tambien roles/formulario.jsp (RF-01)
  * v1.2 2026-10-27  listado y busqueda del catalogo, MK-01 (RF-02)
  * v1.3 2026-10-27  editar y actualizar rol, MK-02 en modo edicion (RF-03)
+ * v1.4 2026-10-27  cambiar estado de un rol desde MK-01 (RF-36)
  */
 package co.edu.remington.pau.controlador;
 
+import co.edu.remington.pau.modelo.EstadoRol;
 import co.edu.remington.pau.modelo.Rol;
 import co.edu.remington.pau.servicio.ReglaNegocioException;
 import co.edu.remington.pau.servicio.RolServicio;
@@ -20,7 +22,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 /** Controlador del modulo de roles (MK-01 y MK-02). */
-@WebServlet(urlPatterns = {"/roles", "/roles/nuevo", "/roles/editar", "/roles/guardar"})
+@WebServlet(urlPatterns = {"/roles", "/roles/nuevo", "/roles/editar", "/roles/guardar", "/roles/estado"})
 public class RolServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -41,8 +43,11 @@ public class RolServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        if ("/roles/guardar".equals(req.getServletPath())) {
+        String ruta = req.getServletPath();
+        if ("/roles/guardar".equals(ruta)) {
             guardar(req, resp);
+        } else if ("/roles/estado".equals(ruta)) {
+            cambiarEstado(req, resp);
         } else {
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
@@ -54,6 +59,10 @@ public class RolServlet extends HttpServlet {
             req.setAttribute("mensaje", "Rol registrado correctamente.");
         } else if ("actualizado".equals(req.getParameter("msg"))) {
             req.setAttribute("mensaje", "Rol actualizado correctamente.");
+        } else if ("inactivado".equals(req.getParameter("msg"))) {
+            req.setAttribute("mensaje", "Rol inactivado correctamente.");
+        } else if ("activado".equals(req.getParameter("msg"))) {
+            req.setAttribute("mensaje", "Rol activado correctamente.");
         }
         String id = req.getParameter("id");
         try {
@@ -72,6 +81,38 @@ public class RolServlet extends HttpServlet {
         } catch (SQLException e) {
             getServletContext().log("Error al consultar los roles", e);
             req.setAttribute("error", "No fue posible consultar los roles. Intente de nuevo.");
+            req.setAttribute("roles", List.<Rol>of());
+        }
+        req.getRequestDispatcher("/roles/listado.jsp").forward(req, resp);
+    }
+
+    /** POST /roles/estado: RF-36 cambia el estado de un rol y vuelve al catalogo. */
+    private void cambiarEstado(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            int id = leerId(req.getParameter("id"));
+            EstadoRol nuevo = EstadoRol.valueOf(req.getParameter("estado"));
+            servicio.cambiarEstado(id, nuevo);
+            resp.sendRedirect(req.getContextPath() + "/roles?msg="
+                    + (nuevo == EstadoRol.INACTIVO ? "inactivado" : "activado"));
+        } catch (IllegalArgumentException | NullPointerException e) {
+            req.setAttribute("error", "El estado solicitado no es válido.");
+            mostrarListadoCompleto(req, resp);
+        } catch (ReglaNegocioException e) {
+            req.setAttribute("error", e.getMessage());
+            mostrarListadoCompleto(req, resp);
+        } catch (SQLException e) {
+            getServletContext().log("Error al cambiar el estado del rol", e);
+            req.setAttribute("error", "No fue posible cambiar el estado. Intente de nuevo.");
+            mostrarListadoCompleto(req, resp);
+        }
+    }
+
+    /** Muestra el catalogo completo junto con el mensaje de error ya cargado. */
+    private void mostrarListadoCompleto(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            req.setAttribute("roles", servicio.listarRoles());
+        } catch (SQLException e) {
+            getServletContext().log("Error al listar los roles", e);
             req.setAttribute("roles", List.<Rol>of());
         }
         req.getRequestDispatcher("/roles/listado.jsp").forward(req, resp);

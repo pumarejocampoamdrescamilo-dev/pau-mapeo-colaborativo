@@ -1,8 +1,9 @@
 /* Archivo : RolDAO.java
- * HU/RF   : HU-01, HU-02, HU-03 · RF-01, RF-02, RF-03
+ * HU/RF   : HU-01, HU-02, HU-03, HU-36 · RF-01, RF-02, RF-03, RF-36
  * v1.0 2026-10-27  creacion (RF-01)
  * v1.1 2026-10-27  buscarPorId y listar (RF-02)
  * v1.2 2026-10-27  existeOtroConNombre y actualizar (RF-03)
+ * v1.3 2026-10-27  actualizarEstado (RF-36)
  */
 package co.edu.remington.pau.modelo;
 
@@ -89,6 +90,16 @@ public class RolDAO {
             ps.setString(1, rol.getNombre());
             ps.setString(2, rol.getDescripcion());
             ps.setInt(3, rol.getIdRol());
+            ps.executeUpdate();
+        }
+    }
+
+    /** RF-36: guarda el nuevo estado del rol. Nunca se borra un rol (RN-16): solo se inactiva. */
+    public void actualizarEstado(Rol rol) throws SQLException {
+        String sql = "UPDATE rol SET estado = ? WHERE id_rol = ?";
+        try (Connection cn = ConexionBD.obtener(); PreparedStatement ps = cn.prepareStatement(sql)) {
+            ps.setString(1, rol.getEstado().name());
+            ps.setInt(2, rol.getIdRol());
             ps.executeUpdate();
         }
     }

@@ -1,8 +1,9 @@
 /* Archivo : Rol.java
- * HU/RF   : HU-01, HU-02, HU-03 · RF-01, RF-02, RF-03
+ * HU/RF   : HU-01, HU-02, HU-03, HU-36 · RF-01, RF-02, RF-03, RF-36
  * v1.0 2026-10-27  creacion (RF-01)
  * v1.1 2026-10-27  consultarRol (RF-02)
  * v1.2 2026-10-27  actualizarRol (RF-03)
+ * v1.3 2026-10-27  cambiarEstado (RF-36)
  */
 package co.edu.remington.pau.modelo;
 
@@ -71,5 +72,14 @@ public class Rol {
             return false;
         }
         return descripcion == null || descripcion.length() <= 255;
+    }
+
+    /** RF-36 (RN-15, RN-16): cambia el estado del rol. Devuelve false si el rol ya estaba en ese estado. */
+    public boolean cambiarEstado(EstadoRol nuevoEstado) {
+        if (nuevoEstado == null || this.estado == nuevoEstado) {
+            return false;
+        }
+        this.estado = nuevoEstado;
+        return true;
     }
 }
