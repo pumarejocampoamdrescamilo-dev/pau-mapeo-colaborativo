@@ -1,6 +1,7 @@
 <%-- Archivo : roles/listado.jsp (MK-01)
-     HU/RF   : HU-02 · RF-02
-     v1.0 2026-10-27  creacion (RF-02) --%>
+     HU/RF   : HU-02, HU-03 · RF-02, RF-03
+     v1.0 2026-10-27  creacion (RF-02)
+     v1.1 2026-10-27  boton Editar por fila (RF-03) --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
@@ -30,7 +31,7 @@
 
   <table class="tabla">
     <thead>
-      <tr><th>ID</th><th>Nombre</th><th>Descripción</th><th>Estado</th></tr>
+      <tr><th>ID</th><th>Nombre</th><th>Descripción</th><th>Estado</th><th>Acciones</th></tr>
     </thead>
     <tbody>
       <c:forEach var="r" items="${roles}">
@@ -39,10 +40,11 @@
           <td><c:out value="${r.nombre}"/></td>
           <td><c:out value="${r.descripcion}"/></td>
           <td class="${r.estado == 'ACTIVO' ? 'estado-activo' : 'estado-inactivo'}"><c:out value="${r.estado}"/></td>
+          <td><a class="boton pequeno" href="${pageContext.request.contextPath}/roles/editar?id=${r.idRol}">Editar</a></td>
         </tr>
       </c:forEach>
       <c:if test="${empty roles}">
-        <tr><td colspan="4" class="vacio">No hay roles para mostrar.</td></tr>
+        <tr><td colspan="5" class="vacio">No hay roles para mostrar.</td></tr>
       </c:if>
     </tbody>
   </table>

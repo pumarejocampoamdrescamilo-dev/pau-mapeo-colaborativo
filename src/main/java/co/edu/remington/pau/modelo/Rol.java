@@ -1,7 +1,8 @@
 /* Archivo : Rol.java
- * HU/RF   : HU-01, HU-02 · RF-01, RF-02
+ * HU/RF   : HU-01, HU-02, HU-03 · RF-01, RF-02, RF-03
  * v1.0 2026-10-27  creacion (RF-01)
  * v1.1 2026-10-27  consultarRol (RF-02)
+ * v1.2 2026-10-27  actualizarRol (RF-03)
  */
 package co.edu.remington.pau.modelo;
 
@@ -59,5 +60,16 @@ public class Rol {
     /** RF-02: devuelve este rol si su identificador es el consultado; si no, nulo. La busqueda en la base de datos la hace RolDAO.buscarPorId. */
     public Rol consultarRol(int idRol) {
         return this.idRol == idRol ? this : null;
+    }
+
+    /** RF-03: valida los datos ya cambiados del rol con las mismas reglas del diccionario. El estado no cambia aqui (eso es RF-36). */
+    public boolean actualizarRol() {
+        if (idRol <= 0) {
+            return false;
+        }
+        if (nombre == null || nombre.isBlank() || nombre.length() > 50) {
+            return false;
+        }
+        return descripcion == null || descripcion.length() <= 255;
     }
 }

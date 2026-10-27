@@ -1,7 +1,8 @@
 /* Archivo : RolServicio.java
- * HU/RF   : HU-01, HU-02 · RF-01, RF-02
+ * HU/RF   : HU-01, HU-02, HU-03 · RF-01, RF-02, RF-03
  * v1.0 2026-10-27  creacion (RF-01)
  * v1.1 2026-10-27  consultarRol y listarRoles (RF-02)
+ * v1.2 2026-10-27  actualizarRol (RF-03)
  */
 package co.edu.remington.pau.servicio;
 
@@ -42,5 +43,23 @@ public class RolServicio {
     /** RF-02: catalogo completo de roles. */
     public List<Rol> listarRoles() throws SQLException {
         return rolDAO.listar();
+    }
+
+    /** RF-03 (CU-03): actualiza nombre y descripcion de un rol. Aplica RN-01 frente a los demas roles. */
+    public void actualizarRol(int idRol, String nombre, String descripcion) throws ReglaNegocioException, SQLException {
+        if (rolDAO.buscarPorId(idRol) == null) {
+            throw new ReglaNegocioException(MSG_NO_EXISTE);
+        }
+        Rol rol = new Rol(idRol, nombre == null ? null : nombre.trim(),
+                (descripcion == null || descripcion.isBlank()) ? null : descripcion.trim(),
+                rolDAO.buscarPorId(idRol).getEstado());
+        if (rolDAO.existeOtroConNombre(rol.getNombre(), idRol)) {
+            throw new ReglaNegocioException("Ya existe un rol con ese nombre.");
+        }
+        if (!rol.actualizarRol()) {
+            throw new ReglaNegocioException(
+                    "El nombre del rol es obligatorio (hasta 50 caracteres) y la descripción admite hasta 255.");
+        }
+        rolDAO.actualizar(rol);
     }
 }

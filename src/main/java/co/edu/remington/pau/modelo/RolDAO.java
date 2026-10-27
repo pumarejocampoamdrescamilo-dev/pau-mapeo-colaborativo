@@ -1,7 +1,8 @@
 /* Archivo : RolDAO.java
- * HU/RF   : HU-01, HU-02 · RF-01, RF-02
+ * HU/RF   : HU-01, HU-02, HU-03 · RF-01, RF-02, RF-03
  * v1.0 2026-10-27  creacion (RF-01)
  * v1.1 2026-10-27  buscarPorId y listar (RF-02)
+ * v1.2 2026-10-27  existeOtroConNombre y actualizar (RF-03)
  */
 package co.edu.remington.pau.modelo;
 
@@ -67,6 +68,29 @@ public class RolDAO {
             }
         }
         return roles;
+    }
+
+    /** RN-01 al actualizar: indica si OTRO rol (distinto de idRol) ya usa ese nombre. */
+    public boolean existeOtroConNombre(String nombre, int idRol) throws SQLException {
+        String sql = "SELECT 1 FROM rol WHERE nombre = ? AND id_rol <> ?";
+        try (Connection cn = ConexionBD.obtener(); PreparedStatement ps = cn.prepareStatement(sql)) {
+            ps.setString(1, nombre);
+            ps.setInt(2, idRol);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        }
+    }
+
+    /** RF-03: actualiza nombre y descripcion del rol. El estado no se toca. */
+    public void actualizar(Rol rol) throws SQLException {
+        String sql = "UPDATE rol SET nombre = ?, descripcion = ? WHERE id_rol = ?";
+        try (Connection cn = ConexionBD.obtener(); PreparedStatement ps = cn.prepareStatement(sql)) {
+            ps.setString(1, rol.getNombre());
+            ps.setString(2, rol.getDescripcion());
+            ps.setInt(3, rol.getIdRol());
+            ps.executeUpdate();
+        }
     }
 
     private Rol mapear(ResultSet rs) throws SQLException {
