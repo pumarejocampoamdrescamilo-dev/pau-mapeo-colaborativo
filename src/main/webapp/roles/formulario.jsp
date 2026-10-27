@@ -1,6 +1,7 @@
 <%-- Archivo : roles/formulario.jsp (MK-02)
      HU/RF   : HU-01 · RF-01
-     v1.0 2026-10-27  creacion (RF-01) --%>
+     v1.0 2026-10-27  creacion (RF-01)
+     v1.1 2026-10-27  Cancelar vuelve al catalogo MK-01 (RF-02) --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
@@ -30,7 +31,7 @@
 
     <div class="botones">
       <button type="submit">Guardar</button>
-      <a class="boton secundario" href="${pageContext.request.contextPath}/roles/nuevo">Cancelar</a>
+      <a class="boton secundario" href="${pageContext.request.contextPath}/roles">Cancelar</a>
     </div>
   </form>
 </main>

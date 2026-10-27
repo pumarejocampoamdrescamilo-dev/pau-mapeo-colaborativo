@@ -1,6 +1,7 @@
 /* Archivo : Rol.java
- * HU/RF   : HU-01 · RF-01
+ * HU/RF   : HU-01, HU-02 · RF-01, RF-02
  * v1.0 2026-10-27  creacion (RF-01)
+ * v1.1 2026-10-27  consultarRol (RF-02)
  */
 package co.edu.remington.pau.modelo;
 
@@ -53,5 +54,10 @@ public class Rol {
         }
         this.estado = EstadoRol.ACTIVO;
         return true;
+    }
+
+    /** RF-02: devuelve este rol si su identificador es el consultado; si no, nulo. La busqueda en la base de datos la hace RolDAO.buscarPorId. */
+    public Rol consultarRol(int idRol) {
+        return this.idRol == idRol ? this : null;
     }
 }
