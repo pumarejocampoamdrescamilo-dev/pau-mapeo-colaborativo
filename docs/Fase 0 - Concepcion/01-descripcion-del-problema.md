@@ -1,0 +1,18 @@
+## 1.1 Descripción del problema
+
+En la ciudad de Medellín, durante el año 2025, persiste una problemática estructural relacionada con la falta de accesibilidad a espacios y servicios públicos para personas con discapacidad física pertenecientes a los estratos socioeconómicos 1 a 4. Esta situación se origina por múltiples factores interrelacionados, entre los cuales se destacan la escasa implementación de políticas inclusivas que garanticen el derecho a la ciudad (Vega, 2023), las barreras de accesibilidad persistentes en el sistema de transporte (Hidalgo et al., 2020), los retos de infraestructura inclusiva que subsisten en zonas periféricas (Global Disability Innovation Hub, 2023), y la persistencia de barreras sociales y culturales, como la discriminación y las ideas erróneas sobre la discapacidad, que limitan la participación (Organización Mundial de la Salud y Banco Mundial, 2011).
+
+La accesibilidad universal es un derecho y no un privilegio, pues de ella depende la calidad de vida de las personas en las ciudades (Organización de las Naciones Unidas, 2006).
+
+Como consecuencia de esta problemática, la población afectada enfrenta un deterioro significativo en su calidad de vida, evidenciado en la dificultad para acceder a servicios esenciales como salud, educación y empleo (Organización Mundial de la Salud y Banco Mundial, 2011; Departamento Administrativo Nacional de Estadística \[DANE\], 2020), las limitaciones para desplazarse de forma autónoma (Global Disability Innovation Hub, 2023), y la vulneración de derechos fundamentales como la igualdad y la participación activa en la vida comunitaria (Organización de las Naciones Unidas, 2006).
+
+Ante este panorama, se hace urgente el desarrollo de soluciones tecnológicas que promuevan la inclusión, faciliten la movilidad y fortalezcan la autonomía de las personas con discapacidad en contextos urbanos desfavorables, contribuyendo así a la construcción de una ciudad más equitativa y humana.
+
+En este contexto, surge la necesidad de diseñar un sistema de mapeo colaborativo de accesibilidad en Medellín que permita a las personas con discapacidad física de estratos 1 a 4 planificar rutas seguras y accesibles, promoviendo su inclusión social y el ejercicio pleno de sus derechos.
+
+La inclusión social y la equidad urbana exigen garantizar un acceso igualitario a los servicios y espacios públicos (Organización Mundial de la Salud y Banco Mundial, 2011).
+
+Según Vega (2023), es fundamental incorporar la perspectiva de derechos en la planificación de la movilidad urbana para asegurar la inclusión efectiva de personas con discapacidad en América Latina. En Medellín, el estudio de caso de AT2030 sobre infraestructura inclusiva (Global Disability Innovation Hub, 2023) documenta la experiencia de la ciudad en este campo. Asimismo, Mora et al. (2017) proponen un sistema que combina sensores, georreferenciación y computación en la nube para detectar y monitorear de forma dinámica las barreras de accesibilidad urbana, con énfasis en las personas con discapacidad motriz.
+
+Según Vega (2023), las ciudades deben planificarse con enfoque de derechos, reconociendo las desigualdades que enfrentan las personas con discapacidad en su movilidad. En esta misma línea, la Convención sobre los derechos de las personas con discapacidad (Organización de las Naciones Unidas, 2006) establece que los Estados deben adoptar medidas para asegurar el acceso al entorno físico y al transporte. En Medellín, el Plan de Desarrollo 2020–2023 (Concejo de Medellín, 2020) propone adaptar la ciudad y las prácticas sociales a las necesidades de las personas con discapacidad dentro de la línea «Medellín me cuida».
+
