@@ -4,7 +4,14 @@ Cada historia de usuario tiene un caso de uso con el mismo número (CU-nn corres
 
 ### 2.4.1 Diagramas de casos de uso
 
-Se presentan cuatro diagramas de casos de uso, uno por caso: dos críticos, el CU-20 () y el CU-23 (), y dos no críticos, el CU-01 () y el CU-36 (). Cada diagrama muestra el actor del caso, que es el rol de su historia de usuario, y el límite del sistema. El CU-23 incluye el recálculo de la confianza del reporte (RF-23), un método interno sin historia propia. Estos cuatro casos son los que se desarrollan con diagramas de actividades, de secuencia y de estados en las secciones siguientes; los demás casos quedan documentados en sus fichas (2.4.3).
+Se presentan cinco diagramas de casos de uso. La es el diagrama general: muestra los 34 casos de uso del sistema dentro de su límite, con los tres actores de las historias (Administrador del Sistema, PCD y Gestor Comunitario); cada actor se conecta solo con sus propios casos, y los dos casos internos, sin historia propia, se incluyen desde CU-10, CU-11 y CU-23. Después hay un diagrama por caso: dos críticos, el CU-20 () y el CU-23 (), y dos no críticos, el CU-01 () y el CU-36 (). Estos cuatro casos son los que se desarrollan con diagramas de actividades, de secuencia y de estados en las secciones siguientes; los demás quedan documentados en sus fichas (2.4.3).
+
+Figura  
+*Diagrama general de casos de uso del sistema PAU*
+
+<img src="../Imagenes/media/31b629600a4a52f7c89f6ce971564363d2bc2557.png" title="Diagrama general de casos de uso del sistema PAU" style="width:9in;height:4.95833in" alt="Diagrama de casos de uso con tres actores y treinta y cuatro casos dentro del límite del sistema." />
+
+*Nota.* Elaboración propia a partir de las historias de usuario. Los óvalos discontinuos son casos internos (métodos RF-12 y RF-23).
 
 Figura  
 *Diagrama de casos de uso crítico: cambiar estado del reporte (CU-20)*

@@ -434,5 +434,5 @@ Tabla
 | PuntoAccesible.actualizarPuntoAccesible()                  | HU-34 / RF-34       |
 | PuntoAccesible.cambiarEstado()                             | HU-35 / RF-35       |
 
-*Nota.* Elaboración propia a partir del diagrama de clases (Figura 27).
+*Nota.* Elaboración propia a partir del diagrama de clases (Figura 28).
 

@@ -5,15 +5,15 @@ El código y los documentos del proyecto viven en un repositorio Git alojado en 
 Tabla  
 *Estructura del repositorio y su origen en el DDA*
 
-| **Carpeta**                                                                     | **Contenido**                                                                        | **Origen en el DDA**                      |
-|---------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|-------------------------------------------|
-| db/                                                                             | script_bd_pau.sql, con cabecera de historial                                         | Modelo relacional y diccionario de datos  |
-| docs/                                                                           | Documento del proyecto (PDF y Word), ELEMENTOS_DE_CONFIGURACION.md y REGISTRO_CRF.md | Entregables y gestión de la configuración |
-| src/main/java/.../modelo                                                        | Clases del dominio, enumeraciones y DAO con JDBC                                     | Paquete modelo                            |
-| src/main/java/.../servicio                                                      | Servicios con las reglas de negocio                                                  | Paquete servicio                          |
-| src/main/java/.../controlador                                                   | Servlets, uno por módulo                                                             | Paquete controlador                       |
-| src/main/webapp/ (roles, usuarios, perfiles, barreras, reportes, rutas, puntos) | Vistas JSP por módulo, con los mapas Leaflet donde aplica                            | Paquete vista y mockups MK-01 a MK-20     |
-| src/main/webapp/css y js                                                        | Estilos y JavaScript compartidos                                                     | Paquete vista                             |
+| **Carpeta**                                                                     | **Contenido**                                                                                                                                                            | **Origen en el DDA**                      |
+|---------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------|
+| db/                                                                             | script_bd_pau.sql, con cabecera de historial                                                                                                                             | Modelo relacional y diccionario de datos  |
+| docs/                                                                           | Documento del proyecto (PDF y Word) y sus partes en Markdown, organizadas por fases (Fase 0, 2, 3 y 4) con sus imágenes; ELEMENTOS_DE_CONFIGURACION.md y REGISTRO_CRF.md | Entregables y gestión de la configuración |
+| src/main/java/.../modelo                                                        | Clases del dominio, enumeraciones y DAO con JDBC                                                                                                                         | Paquete modelo                            |
+| src/main/java/.../servicio                                                      | Servicios con las reglas de negocio                                                                                                                                      | Paquete servicio                          |
+| src/main/java/.../controlador                                                   | Servlets, uno por módulo                                                                                                                                                 | Paquete controlador                       |
+| src/main/webapp/ (roles, usuarios, perfiles, barreras, reportes, rutas, puntos) | Vistas JSP por módulo, con los mapas Leaflet donde aplica                                                                                                                | Paquete vista y mockups MK-01 a MK-20     |
+| src/main/webapp/css y js                                                        | Estilos y JavaScript compartidos                                                                                                                                         | Paquete vista                             |
 
 *Nota.* Elaboración propia a partir del DDA de la sección 3.8.
 

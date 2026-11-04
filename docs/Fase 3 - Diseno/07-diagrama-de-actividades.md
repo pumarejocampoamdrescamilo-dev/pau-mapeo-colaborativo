@@ -13,7 +13,7 @@ Tabla
 | Actor              | Gestor Comunitario         | PCD                                | Administrador del Sistema | Administrador del Sistema |
 | Pantalla           | MK-14                      | MK-15                              | MK-02                     | MK-01                     |
 | Reglas de negocio  | RN-08 y RN-09              | RN-11                              | RN-01                     | RN-15 y RN-16             |
-| Figura             | Figura 28                  | Figura 29                          | Figura 30                 | Figura 31                 |
+| Figura             | Figura 29                  | Figura 30                          | Figura 31                 | Figura 32                 |
 
 *Nota.* Elaboración propia a partir de los casos de uso, el diccionario de datos y las reglas de negocio.
 
