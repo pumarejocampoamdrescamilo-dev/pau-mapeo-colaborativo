@@ -1,6 +1,6 @@
 # Documentación del proyecto PAU
 
-Documento completo (versión 7.2): [PAU_Mapeo_Colaborativo.docx](PAU_Mapeo_Colaborativo.docx) · [PDF](PAU_Mapeo_Colaborativo.pdf)
+Documento completo (versión 7.3): [PAU_Mapeo_Colaborativo.docx](PAU_Mapeo_Colaborativo.docx) · [PDF](PAU_Mapeo_Colaborativo.pdf)
 
 El mismo documento, partido por fases y por partes:
 

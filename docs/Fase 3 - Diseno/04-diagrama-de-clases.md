@@ -5,7 +5,7 @@ La presenta el diagrama de clases en UML, con doce clases de dominio y veinte en
 Figura  
 *Diagrama de clases del sistema PAU*
 
-<img src="../Imagenes/media/ea505efaec44bf8dae6931bbc36e969abacde8e1.png" title="Diagrama de clases del sistema PAU" style="width:7.05208in;height:4.89583in" alt="Diagrama de clases UML con doce clases de dominio, sus métodos y veinte enumeraciones." />
+<img src="../Imagenes/media/2aabbc32e7860d65aad43cef3ed0e185b7aaaad6.png" title="Diagrama de clases del sistema PAU" style="width:6.94792in;height:4.89583in" alt="Diagrama de clases UML con doce clases de dominio, sus métodos y veinte enumeraciones." />
 
 *Nota.* Elaboración propia a partir del diccionario de datos y del MER.
 

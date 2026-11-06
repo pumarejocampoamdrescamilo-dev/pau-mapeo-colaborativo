@@ -408,16 +408,20 @@ Tabla
 </tr>
 <tr class="even">
 <td><strong>Flujo básico (Evento / Respuesta)</strong></td>
-<td><p>1. El PCD solicita registrar su perfil de movilidad. / El sistema presenta el formulario.</p>
-<p>2. El PCD ingresa tipo y grado de discapacidad, condición de movilidad, equipo de asistencia y parámetros de ruta. / El sistema recibe los datos.</p>
-<p>3. — / El sistema verifica que el PCD no tenga ya un perfil registrado (RN-04).</p>
-<p>4. — / El sistema registra el perfil asociado únicamente a ese usuario.</p></td>
+<td><p>1. El PCD solicita registrar su perfil de movilidad. / El sistema presenta el formulario con la casilla de autorización para el tratamiento de datos sensibles.</p>
+<p>2. El PCD ingresa tipo y grado de discapacidad, condición de movilidad, equipo de asistencia y parámetros de ruta, y marca la autorización. / El sistema recibe los datos.</p>
+<p>3. — / El sistema verifica que el PCD haya autorizado el tratamiento de sus datos (RN-17) y que no tenga ya un perfil registrado (RN-04).</p>
+<p>4. — / El sistema registra el perfil asociado únicamente a ese usuario, con la autorización y la fecha en que se dio.</p></td>
 </tr>
 <tr class="odd">
 <td><strong>Flujo alternativo 3a</strong></td>
 <td>El PCD ya tiene un perfil registrado: el sistema no crea el nuevo perfil y muestra “Ya tienes un perfil de movilidad registrado.” (Valida la RN-04)</td>
 </tr>
 <tr class="even">
+<td><strong>Flujo alternativo 3b</strong></td>
+<td>El PCD no marcó la autorización: el sistema no crea el perfil y muestra “Debes autorizar el tratamiento de tus datos de movilidad para registrar tu perfil.” (Valida la RN-17)</td>
+</tr>
+<tr class="odd">
 <td><strong>Poscondición</strong></td>
 <td>El perfil de movilidad queda registrado y listo para usarse en el cálculo de rutas.</td>
 </tr>

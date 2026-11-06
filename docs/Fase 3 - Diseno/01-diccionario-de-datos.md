@@ -55,23 +55,25 @@ Tabla
 Tabla  
 *Campos de la tabla perfil_movilidad*
 
-| **Campo**            | **Tipo** | **Tam./Nulo**  | **AI / Tipo Rel.** | **Tabla Rel.** | **Descripción / Regla de Negocio**                                                                                    |
-|----------------------|----------|----------------|--------------------|----------------|-----------------------------------------------------------------------------------------------------------------------|
-| id_perfil            | INT      | — / NOT NULL   | Sí / PK            | —              | Identificador único del perfil de movilidad.                                                                          |
-| id_usuario           | INT      | — / NOT NULL   | No / FK, UNIQUE    | usuario        | Referencia al usuario titular. Relación 1:1 estricta.                                                                 |
-| tipo_discapacidad    | ENUM     | 50 / NOT NULL  | No / Atributo      | —              | \[DATO SENSIBLE\] (MOTRIZ, VISUAL, AUDITIVA, COGNITIVA, MULTIPLE).                                                    |
-| grado_discapacidad   | ENUM     | 30 / NOT NULL  | No / Atributo      | —              | \[DATO SENSIBLE\] (LEVE, MODERADO, SEVERO, TOTAL).                                                                    |
-| condicion_movilidad  | ENUM     | 50 / NOT NULL  | No / Atributo      | —              | (USUARIO_SILLA_RUEDAS_TOTAL, MOVILIDAD_REDUCIDA_PUESTA_EN_PIE, AMBULANTE_CON_SOPORTE, MOVILIDAD_REDUCIDA_SIN_EQUIPO). |
-| equipo_asistencia    | ENUM     | 50 / NOT NULL  | No / Atributo      | —              | (SILLA_MANUAL, SILLA_ELECTRICA, MULETAS, BASTON, ANDADOR, NINGUNO).                                                   |
-| requiere_asistente   | BOOLEAN  | — / NOT NULL   | No / Atributo      | —              | Indica si va acompañado por un tercero o perro guía.                                                                  |
-| pendiente_maxima     | DECIMAL  | 5,2 / NOT NULL | No / Atributo      | —              | Porcentaje máximo de inclinación permitido.                                                                           |
-| distancia_maxima_pie | INT      | — / NULL       | No / Atributo      | —              | Metros máximos de caminata continua recomendados.                                                                     |
-| tolerancia_escalones | INT      | — / NOT NULL   | No / Atributo      | —              | Número de escalones continuos tolerados.                                                                              |
-| evita_escaleras      | BOOLEAN  | — / NOT NULL   | No / Atributo      | —              | Exclusión absoluta de escaleras en el trazado.                                                                        |
-| priorizar_rampas     | BOOLEAN  | — / NOT NULL   | No / Atributo      | —              | Ponderación para exigir infraestructura de rampa.                                                                     |
-| priorizar_ascensores | BOOLEAN  | — / NOT NULL   | No / Atributo      | —              | Priorización de conectores mecánicos/elevadores.                                                                      |
+| **Campo**            | **Tipo** | **Tam./Nulo**  | **AI / Tipo Rel.** | **Tabla Rel.** | **Descripción / Regla de Negocio**                                                                                                                  |
+|----------------------|----------|----------------|--------------------|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| id_perfil            | INT      | — / NOT NULL   | Sí / PK            | —              | Identificador único del perfil de movilidad.                                                                                                        |
+| id_usuario           | INT      | — / NOT NULL   | No / FK, UNIQUE    | usuario        | Referencia al usuario titular. Relación 1:1 estricta.                                                                                               |
+| tipo_discapacidad    | ENUM     | 50 / NOT NULL  | No / Atributo      | —              | \[DATO SENSIBLE\] (MOTRIZ, VISUAL, AUDITIVA, COGNITIVA, MULTIPLE).                                                                                  |
+| grado_discapacidad   | ENUM     | 30 / NOT NULL  | No / Atributo      | —              | \[DATO SENSIBLE\] (LEVE, MODERADO, SEVERO, TOTAL).                                                                                                  |
+| condicion_movilidad  | ENUM     | 50 / NOT NULL  | No / Atributo      | —              | (USUARIO_SILLA_RUEDAS_TOTAL, MOVILIDAD_REDUCIDA_PUESTA_EN_PIE, AMBULANTE_CON_SOPORTE, MOVILIDAD_REDUCIDA_SIN_EQUIPO).                               |
+| equipo_asistencia    | ENUM     | 50 / NOT NULL  | No / Atributo      | —              | (SILLA_MANUAL, SILLA_ELECTRICA, MULETAS, BASTON, ANDADOR, NINGUNO).                                                                                 |
+| requiere_asistente   | BOOLEAN  | — / NOT NULL   | No / Atributo      | —              | Indica si va acompañado por un tercero o perro guía.                                                                                                |
+| pendiente_maxima     | DECIMAL  | 5,2 / NOT NULL | No / Atributo      | —              | Porcentaje máximo de inclinación permitido.                                                                                                         |
+| distancia_maxima_pie | INT      | — / NULL       | No / Atributo      | —              | Metros máximos de caminata continua recomendados.                                                                                                   |
+| tolerancia_escalones | INT      | — / NOT NULL   | No / Atributo      | —              | Número de escalones continuos tolerados.                                                                                                            |
+| evita_escaleras      | BOOLEAN  | — / NOT NULL   | No / Atributo      | —              | Exclusión absoluta de escaleras en el trazado.                                                                                                      |
+| priorizar_rampas     | BOOLEAN  | — / NOT NULL   | No / Atributo      | —              | Ponderación para exigir infraestructura de rampa.                                                                                                   |
+| priorizar_ascensores | BOOLEAN  | — / NOT NULL   | No / Atributo      | —              | Priorización de conectores mecánicos/elevadores.                                                                                                    |
+| autorizacion_datos   | BOOLEAN  | — / NOT NULL   | No / Atributo      | —              | Autorización expresa y previa del titular para tratar sus datos sensibles (Ley 1581 de 2012). Solo se registra el perfil si vale verdadero (RN-17). |
+| fecha_autorizacion   | DATETIME | — / NOT NULL   | No / Atributo      | —              | Fecha y hora en que el titular dio la autorización. Por defecto: CURRENT_TIMESTAMP.                                                                 |
 
-*Nota.* Propósito: Registrar la condición física y el equipamiento de asistencia del usuario para alimentar el motor de búsqueda de rutas. Cláusula de Protección de Datos Sensibles (Ley 1581 de 2012): tipo_discapacidad y grado_discapacidad son datos sensibles y exigen autorización explícita, cifrado en reposo (AES-256), acceso restringido por rol y uso exclusivo para el cálculo de accesibilidad.
+*Nota.* Propósito: Registrar la condición física y el equipamiento de asistencia del usuario para alimentar el motor de búsqueda de rutas. Cláusula de Protección de Datos Sensibles (Ley 1581 de 2012): tipo_discapacidad y grado_discapacidad son datos sensibles y exigen autorización explícita (campos autorizacion_datos y fecha_autorizacion, RN-17), cifrado en reposo (AES-256), acceso restringido por rol y uso exclusivo para el cálculo de accesibilidad.
 
 Tabla  
 *Campos de la tabla barrera*
@@ -231,7 +233,9 @@ Tabla
 
 6\. CHECK ck_reporte_confianza: reporte.nivel_confianza debe estar entre 1.00 y 5.00 (RN-11).
 
-7\. Todas las tablas usan el motor InnoDB y el juego de caracteres utf8mb4, en la base de datos pau; cada UNIQUE, FOREIGN KEY y CHECK lleva nombre propio (uq\_, fk\_, ck\_) y cita su regla de negocio en el script de la sección 4.1.
+7\. CHECK ck_perfil_autorizacion: perfil_movilidad.autorizacion_datos debe ser verdadero (1); sin autorización del titular no se guarda el perfil (RN-17).
+
+8\. Todas las tablas usan el motor InnoDB y el juego de caracteres utf8mb4, en la base de datos pau; cada UNIQUE, FOREIGN KEY y CHECK lleva nombre propio (uq\_, fk\_, ck\_) y cita su regla de negocio en el script de la sección 4.1.
 
 ### 3.1.2 Reglas de negocio del diccionario
 

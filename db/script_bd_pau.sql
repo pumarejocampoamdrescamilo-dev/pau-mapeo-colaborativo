@@ -46,7 +46,10 @@ CREATE TABLE perfil_movilidad (                  -- entidad MAESTRA
   evita_escaleras            BOOLEAN NOT NULL,
   priorizar_rampas           BOOLEAN NOT NULL,
   priorizar_ascensores       BOOLEAN NOT NULL,
+  autorizacion_datos         BOOLEAN NOT NULL,  -- RN-17
+  fecha_autorizacion         DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,  -- RN-17
   CONSTRAINT uq_perfil_usuario UNIQUE (id_usuario),  -- RN-04
+  CONSTRAINT ck_perfil_autorizacion CHECK (autorizacion_datos = 1),  -- RN-17
   CONSTRAINT fk_perfil_movilidad_usuario FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
 ) ENGINE=InnoDB;
 
@@ -176,6 +179,7 @@ CREATE TABLE auditoria_acceso_perfil_movilidad ( -- entidad TRANSACCIONAL (audit
 
 -- Reglas que no caben en DDL y se validan en la capa de servicio (seccion 3.8 y 4.3):
 -- RN-03 (solo usuario ACTIVO inicia sesion), RN-05 (registro de cada acceso al perfil),
+-- RN-17 (el servicio pide la autorizacion antes de guardar el perfil; ck_perfil_autorizacion es la ultima barrera),
 -- RN-09 (propagacion reporte -> barrera), RN-10 (reporte no reasignable), RN-12 (calculo unico)
 -- y RN-15 (rol INACTIVO no se asigna a usuarios nuevos).
 
@@ -200,5 +204,7 @@ INSERT INTO validacion_reporte (id_reporte, id_usuario, es_valido, comentario) V
 -- INSERT INTO rol (nombre) VALUES ('PCD');
 -- RN-08: reporte sin barrera y con origen distinto de NUEVA_BARRERA -> error de CHECK en ck_reporte_barrera
 -- INSERT INTO reporte (id_usuario, id_barrera, origen_reporte, nivel_confianza) VALUES (1, NULL, 'ALERTA_TEMPORAL', 1.00);
+-- RN-17: perfil sin autorizacion del titular -> error de CHECK en ck_perfil_autorizacion
+-- INSERT INTO perfil_movilidad (id_usuario, tipo_discapacidad, grado_discapacidad, condicion_movilidad, equipo_asistencia, requiere_asistente, pendiente_maxima, tolerancia_escalones, evita_escaleras, priorizar_rampas, priorizar_ascensores, autorizacion_datos) VALUES (1, 'MOTRIZ', 'MODERADO', 'USUARIO_SILLA_RUEDAS_TOTAL', 'SILLA_MANUAL', FALSE, 6.00, 0, TRUE, TRUE, FALSE, FALSE);
 -- RN-11: segundo voto del mismo usuario sobre el mismo reporte      -> Duplicate entry
 -- INSERT INTO validacion_reporte (id_reporte, id_usuario, es_valido) VALUES (1, 2, FALSE);

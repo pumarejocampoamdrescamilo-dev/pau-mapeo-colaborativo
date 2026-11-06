@@ -468,7 +468,7 @@ Tabla
 </tr>
 <tr class="odd">
 <td><strong>Historia</strong></td>
-<td>Como PCD, quiero registrar mi perfil de movilidad (tipo/grado de discapacidad, equipo de asistencia, tolerancia a escalones, distancia máxima a pie), para recibir rutas ajustadas a mi condición real.</td>
+<td>Como PCD, quiero registrar mi perfil de movilidad (tipo/grado de discapacidad, equipo de asistencia, tolerancia a escalones, distancia máxima a pie) autorizando de forma expresa el tratamiento de mis datos sensibles, para recibir rutas ajustadas a mi condición real.</td>
 </tr>
 <tr class="even">
 <td><strong>Criterios de aceptación</strong></td>
@@ -476,9 +476,10 @@ Tabla
 <p><em>Antecedentes</em></p>
 <p><strong>Escenario: CA-1 Registro exitoso del perfil de movilidad</strong></p>
 <blockquote>
-<p><em># registrarPerfil() · RN-04 (relación 1:1 con usuario, FK UNIQUE); datos sensibles bajo Ley 1581 de 2012</em></p>
-<p>Cuando Marcela registra su perfil con tipo de discapacidad "MOTRIZ", grado "MODERADO", condición "USUARIO_SILLA_RUEDAS_TOTAL" y equipo "SILLA_MANUAL"</p>
+<p><em># registrarPerfil() · RN-04 (relación 1:1 con usuario, FK UNIQUE) y RN-17 (autorización de datos sensibles, Ley 1581 de 2012)</em></p>
+<p>Cuando Marcela autoriza expresamente el tratamiento de sus datos sensibles y registra su perfil con tipo de discapacidad "MOTRIZ", grado "MODERADO", condición "USUARIO_SILLA_RUEDAS_TOTAL" y equipo "SILLA_MANUAL"</p>
 <p>Entonces el perfil queda registrado asociado únicamente a Marcela</p>
+<p>Y el sistema guarda la autorización y la fecha en que la dio</p>
 </blockquote>
 <p><strong>Escenario: CA-2 Rechazo por perfil ya existente</strong></p>
 <blockquote>
@@ -486,6 +487,14 @@ Tabla
 <p>Cuando Marcela intenta registrar un segundo perfil</p>
 <p>Entonces el sistema no crea el nuevo perfil</p>
 <p>Y muestra "Ya tienes un perfil de movilidad registrado."</p>
+</blockquote>
+<p><strong>Escenario: CA-3 Rechazo por falta de autorización</strong></p>
+<blockquote>
+<p><em># registrarPerfil() · RN-17</em></p>
+<p>Dado que Marcela no ha marcado la autorización para el tratamiento de sus datos sensibles</p>
+<p>Cuando Marcela intenta registrar su perfil de movilidad</p>
+<p>Entonces el sistema no crea el perfil</p>
+<p>Y muestra "Debes autorizar el tratamiento de tus datos de movilidad para registrar tu perfil."</p>
 </blockquote></td>
 </tr>
 <tr class="odd">

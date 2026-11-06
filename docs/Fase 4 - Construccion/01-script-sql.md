@@ -2,7 +2,7 @@
 
 El script de la base de datos es la imagen exacta del modelo relacional de la : cada tabla conserva los nombres, los tipos, los tamaños y la nulidad del diccionario de datos de la sección 3.1. Se ejecuta en MySQL 8 o en MariaDB (la que trae XAMPP), con el motor InnoDB; vive en db/ en la raíz del repositorio y nunca contiene DELETE: las bajas son inactivaciones (RN-16).
 
-Cada restricción lleva nombre propio y comenta la regla que protege; las reglas que dependen del estado de otras filas se declaran en el script para validarlas en el servicio. La indica dónde se hace cumplir cada regla. El script trae datos semilla y tres verificaciones comentadas (RN-01, RN-08 y RN-11) cuyo INSERT debe fallar; el listado completo está en la .
+Cada restricción lleva nombre propio y comenta la regla que protege; las reglas que dependen del estado de otras filas se declaran en el script para validarlas en el servicio. La indica dónde se hace cumplir cada regla. El script trae datos semilla y cuatro verificaciones comentadas (RN-01, RN-08, RN-11 y RN-17) cuyo INSERT debe fallar; el listado completo está en la .
 
 Tabla  
 *Reglas de negocio y su restricción en la base de datos*
@@ -17,6 +17,7 @@ Tabla
 | RN-11                              | Base de datos y servicio  | UNIQUE uq_validacion_reporte_usuario y CHECK ck_reporte_confianza (1.00 a 5.00); el recálculo lo hace el servicio                                                   | validacion_reporte y reporte  |
 | RN-13                              | Base de datos             | UNIQUE uq_segmento_ruta_orden (id_ruta, orden_segmento)                                                                                                             | segmento_ruta                 |
 | RN-15 y RN-16                      | Base de datos y servicio  | ENUM de estado (ACTIVO e INACTIVO; ACTIVA e INACTIVA): la baja es una inactivación y no un DELETE; el servicio impide asignar un rol inactivo y inactivar dos veces | rol y barrera_equipo_afectado |
+| RN-17                              | Base de datos y servicio  | CHECK ck_perfil_autorizacion (autorizacion_datos = 1); el servicio pide la autorización antes de guardar el perfil                                                  | perfil_movilidad              |
 | RN-03, RN-05, RN-09, RN-10 y RN-12 | Servicio                  | No se expresan en DDL porque dependen del estado de otras filas o de un cálculo; se validan en la capa de servicio (sección 4.3)                                    | —                             |
 
 *Nota.* Elaboración propia a partir del diccionario de datos y de las reglas de negocio de la sección 2.2.1.
@@ -114,7 +115,13 @@ priorizar_rampas BOOLEAN NOT NULL,
 
 priorizar_ascensores BOOLEAN NOT NULL,
 
+autorizacion_datos BOOLEAN NOT NULL, -- RN-17
+
+fecha_autorizacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, -- RN-17
+
 CONSTRAINT uq_perfil_usuario UNIQUE (id_usuario), -- RN-04
+
+CONSTRAINT ck_perfil_autorizacion CHECK (autorizacion_datos = 1), -- RN-17
 
 CONSTRAINT fk_perfil_movilidad_usuario FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
 
@@ -352,6 +359,8 @@ CONSTRAINT fk_auditoria_acceso_perfil\_\_usuario FOREIGN KEY (id_usuario) REFERE
 
 -- RN-03 (solo usuario ACTIVO inicia sesion), RN-05 (registro de cada acceso al perfil),
 
+-- RN-17 (el servicio pide la autorizacion antes de guardar el perfil; ck_perfil_autorizacion es la ultima barrera),
+
 -- RN-09 (propagacion reporte -\> barrera), RN-10 (reporte no reasignable), RN-12 (calculo unico)
 
 -- y RN-15 (rol INACTIVO no se asigna a usuarios nuevos).
@@ -396,13 +405,17 @@ INSERT INTO validacion_reporte (id_reporte, id_usuario, es_valido, comentario) V
 
 -- INSERT INTO reporte (id_usuario, id_barrera, origen_reporte, nivel_confianza) VALUES (1, NULL, 'ALERTA_TEMPORAL', 1.00);
 
+-- RN-17: perfil sin autorizacion del titular -\> error de CHECK en ck_perfil_autorizacion
+
+-- INSERT INTO perfil_movilidad (id_usuario, tipo_discapacidad, grado_discapacidad, condicion_movilidad, equipo_asistencia, requiere_asistente, pendiente_maxima, tolerancia_escalones, evita_escaleras, priorizar_rampas, priorizar_ascensores, autorizacion_datos) VALUES (1, 'MOTRIZ', 'MODERADO', 'USUARIO_SILLA_RUEDAS_TOTAL', 'SILLA_MANUAL', FALSE, 6.00, 0, TRUE, TRUE, FALSE, FALSE);
+
 -- RN-11: segundo voto del mismo usuario sobre el mismo reporte -\> Duplicate entry
 
 -- INSERT INTO validacion_reporte (id_reporte, id_usuario, es_valido) VALUES (1, 2, FALSE);
 
 *Nota.* Elaboración propia a partir del diccionario de datos (sección 3.1).
 
-El script se ejecutó en MariaDB, la base de datos de XAMPP, sin errores. La muestra las doce tablas creadas y la muestra que cada una de las tres verificaciones falla como se espera, con lo que quedan comprobadas RN-01, RN-08 y RN-11.
+El script se ejecutó en MariaDB, la base de datos de XAMPP, sin errores. La muestra las doce tablas creadas y la muestra que las tres primeras verificaciones fallan como se espera, con lo que quedan comprobadas RN-01, RN-08 y RN-11. La cuarta, de la RN-17 (perfil sin autorización), se agregó con el CRF-13 y se ejecuta de la misma forma.
 
 Figura  
 *Tablas creadas en la base de datos pau*
@@ -416,5 +429,5 @@ Figura
 
 <img src="../Imagenes/media/b0523902b465d6b9027937d29f46f75545d045fa.png" title="Verificación de las restricciones de la base de datos" style="width:6.5in;height:0.70833in" alt="Consola con los tres errores esperados al insertar datos que violan las reglas." />
 
-*Nota.* Captura de la consola de MariaDB (XAMPP). Cada INSERT falla: uq_rol_nombre (RN-01), ck_reporte_barrera (RN-08) y uq_validacion_reporte_usuario (RN-11).
+*Nota.* Captura de la consola de MariaDB (XAMPP). Cada INSERT falla (verificaciones de las versiones anteriores al CRF-13): uq_rol_nombre (RN-01), ck_reporte_barrera (RN-08) y uq_validacion_reporte_usuario (RN-11).
 

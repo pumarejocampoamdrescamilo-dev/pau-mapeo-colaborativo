@@ -5,7 +5,7 @@ La presenta el modelo relacional, obtenido del MER con tres reglas: cada entidad
 Figura  
 *Modelo relacional del sistema PAU*
 
-<img src="../Imagenes/media/c8608d03185da8d0cfeedcaa4d25be23a021a472.png" title="Modelo relacional del sistema PAU" style="width:6.07292in;height:7.29167in" alt="Modelo relacional con doce tablas, sus llaves y el cuadro de restricciones con las reglas de negocio." />
+<img src="../Imagenes/media/d8c4edba66a4359817f4b1e7c45b60b23243ffdd.png" title="Modelo relacional del sistema PAU" style="width:6.07292in;height:7.29167in" alt="Modelo relacional con doce tablas, sus llaves y el cuadro de restricciones con las reglas de negocio." />
 
 *Nota.* Elaboración propia a partir del MER y del diccionario de datos. PK: llave primaria; FK: llave foránea; UQ: valor único.
 

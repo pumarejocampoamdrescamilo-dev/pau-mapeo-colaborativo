@@ -2,7 +2,7 @@
 
 ### 2.2.1 Reglas de negocio
 
-Las fichas de la a la reúnen las dieciséis reglas de negocio. Cada una está redactada en presente como política del negocio, cita el criterio de aceptación de una historia de usuario del que nace (casi siempre un caso de rechazo) y nombra los requisitos funcionales que la vigilan. Las reglas RN-15 y RN-16 son nuevas y establecen la inactivación como forma de baja.
+Las fichas de la a la reúnen las diecisiete reglas de negocio. Cada una está redactada en presente como política del negocio, cita el criterio de aceptación de una historia de usuario del que nace (casi siempre un caso de rechazo) y nombra los requisitos funcionales que la vigilan. Las reglas RN-15 y RN-16 son nuevas y establecen la inactivación como forma de baja. La RN-17 se agregó con el CRF-13 y exige la autorización expresa del titular para tratar los datos sensibles del perfil de movilidad.
 
 Tabla  
 *Ficha de la RN-01*
@@ -164,6 +164,16 @@ Tabla
 | **Origen**            | Criterios HU-17 CA-1 y CA-3; criterios HU-36 CA-1 y CA-3; diccionario de datos (Regla de negocio §3)                                                                                                                             |
 | **RF que la vigilan** | RF-18, RF-36                                                                                                                                                                                                                     |
 
+Tabla  
+*Ficha de la RN-17*
+
+|                       |                                                                                                                                                                                                                                                                            |
+|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Código**            | RN-17                                                                                                                                                                                                                                                                      |
+| **Enunciado**         | Los datos del perfil de movilidad son datos sensibles: el perfil solo puede registrarse si el titular autoriza de forma expresa y previa su tratamiento (Ley 1581 de 2012, art. 9), y el sistema guarda la autorización y su fecha; sin autorización el perfil no se crea. |
+| **Origen**            | Criterio de aceptación de HU-09 CA-3 (consentimiento para datos sensibles, Ley 1581 de 2012); regla agregada por el CRF-13                                                                                                                                                 |
+| **RF que la vigilan** | RF-09                                                                                                                                                                                                                                                                      |
+
 ### 2.2.2 Requisitos funcionales
 
 Las fichas de la a la presentan los treinta y seis requisitos funcionales. Todos empiezan con «El sistema debe», no mencionan pantallas ni tecnología, citan la historia de usuario de la que derivan (los dos métodos internos citan las historias que los disparan) y la regla de negocio que hacen cumplir. Ningún requisito elimina información: RF-18 y RF-36 inactivan.
@@ -267,14 +277,14 @@ Tabla
 Tabla  
 *Ficha del RF-09: Registrar perfil de movilidad*
 
-|                         |                                                                                                                                                                                                                     |
-|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Código**              | RF-09                                                                                                                                                                                                               |
-| **Nombre corto**        | Registrar perfil de movilidad                                                                                                                                                                                       |
-| **Descripción**         | El sistema debe registrar el perfil de movilidad de un usuario (tipo y grado de discapacidad, condición de movilidad, equipo de asistencia y parámetros de ruta), verificando que no tenga ya un perfil registrado. |
-| **HU de origen**        | HU-09                                                                                                                                                                                                               |
-| **RN que hace cumplir** | RN-04 (un perfil por usuario)                                                                                                                                                                                       |
-| **Prioridad**           | Alta                                                                                                                                                                                                                |
+|                         |                                                                                                                                                                                                                                                                                                     |
+|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Código**              | RF-09                                                                                                                                                                                                                                                                                               |
+| **Nombre corto**        | Registrar perfil de movilidad                                                                                                                                                                                                                                                                       |
+| **Descripción**         | El sistema debe registrar el perfil de movilidad de un usuario (tipo y grado de discapacidad, condición de movilidad, equipo de asistencia y parámetros de ruta), exigiendo la autorización expresa del titular para tratar sus datos sensibles y verificando que no tenga ya un perfil registrado. |
+| **HU de origen**        | HU-09                                                                                                                                                                                                                                                                                               |
+| **RN que hace cumplir** | RN-04 (un perfil por usuario), RN-17 (autorización de datos sensibles)                                                                                                                                                                                                                              |
+| **Prioridad**           | Alta                                                                                                                                                                                                                                                                                                |
 
 Tabla  
 *Ficha del RF-10: Consultar perfil de movilidad*

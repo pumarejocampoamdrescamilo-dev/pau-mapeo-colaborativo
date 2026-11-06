@@ -15,7 +15,7 @@ Tabla
 | HU-06  | RF-06  | CU-06  | MK-05  | CA-1 a CA-2   |
 | HU-07  | RF-07  | CU-07  | MK-04  | CA-1          |
 | HU-08  | RF-08  | CU-08  | MK-06  | CA-1 a CA-2   |
-| HU-09  | RF-09  | CU-09  | MK-07  | CA-1 a CA-2   |
+| HU-09  | RF-09  | CU-09  | MK-07  | CA-1 a CA-3   |
 | HU-10  | RF-10  | CU-10  | MK-07  | CA-1          |
 | HU-11  | RF-11  | CU-11  | MK-07  | CA-1          |
 | HU-12  | RF-13  | CU-12  | MK-10  | CA-1 a CA-2   |

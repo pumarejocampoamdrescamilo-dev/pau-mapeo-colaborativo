@@ -1,0 +1,364 @@
+@startuml
+hide circle
+skinparam monochrome true
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontColor black
+skinparam classAttributeIconSize 0
+skinparam roundCorner 0
+skinparam ArrowColor black
+skinparam ClassBorderColor black
+skinparam ClassBackgroundColor white
+skinparam NoteBackgroundColor white
+skinparam NoteBorderColor black
+skinparam ArrowFontSize 11
+skinparam ClassFontSize 13
+skinparam ClassAttributeFontSize 11
+skinparam dpi 160
+skinparam nodesep 40
+skinparam ranksep 55
+title Diagrama de Clases — Sistema de Mapeo Colaborativo y Rutas Accesibles (PAU)
+
+class Rol {
+  - idRol : int
+  - nombre : String
+  - descripcion : String
+  - estado : EstadoRol
+  --
+  + crearRol() : boolean
+  + consultarRol(idRol : int) : Rol
+  + actualizarRol() : boolean
+  + cambiarEstado(nuevoEstado : EstadoRol) : boolean
+}
+
+class Usuario {
+  - idUsuario : int
+  - nombreCompleto : String
+  - correo : String
+  - contrasenaHash : String
+  - estado : EstadoUsuario
+  - fechaRegistro : DateTime
+  --
+  + registrarUsuario() : boolean
+  + consultarUsuario(idUsuario : int) : Usuario
+  + actualizarDatosPersonales() : boolean
+  + autenticar(correo : String, contrasena : String) : boolean
+  + cambiarEstado(nuevoEstado : EstadoUsuario) : boolean
+}
+
+class PerfilMovilidad {
+  - idPerfil : int
+  - tipoDiscapacidad : TipoDiscapacidad
+  - gradoDiscapacidad : GradoDiscapacidad
+  - condicionMovilidad : CondicionMovilidad
+  - equipoAsistencia : EquipoAsistencia
+  - requiereAsistente : boolean
+  - pendienteMaxima : double
+  - distanciaMaximaPie : int
+  - toleranciaEscalones : int
+  - evitaEscaleras : boolean
+  - priorizarRampas : boolean
+  - priorizarAscensores : boolean
+  - autorizacionDatos : boolean
+  - fechaAutorizacion : DateTime
+  --
+  + registrarPerfil() : boolean
+  + consultarPerfil(idUsuario : int) : PerfilMovilidad
+  + actualizarPerfil() : boolean
+}
+
+class AuditoriaAccesoPerfilMovilidad {
+  - idAuditoria : int
+  - accion : AccionAuditoria
+  - resultado : ResultadoAuditoria
+  - fechaAcceso : DateTime
+  --
+  + registrarAcceso() : boolean
+  + consultarHistorialAccesos(idPerfil : int) : List<AuditoriaAccesoPerfilMovilidad>
+}
+
+class Barrera {
+  - idBarrera : int
+  - tipoBarrera : TipoBarrera
+  - nivelGravedad : NivelGravedad
+  - equipoAfectadoPrincipal : EquipoAfectado
+  - latitud : double
+  - longitud : double
+  - descripcion : String
+  - estado : EstadoBarrera
+  - fechaRegistro : DateTime
+  --
+  + registrarBarrera() : boolean
+  + consultarBarrera(idBarrera : int) : Barrera
+  + cambiarEstado(nuevoEstado : EstadoBarrera) : boolean
+}
+
+class BarreraEquipoAfectado {
+  - idBarreraEquipo : int
+  - equipoAfectado : EquipoAfectado
+  - estado : EstadoAsociacion
+  - fechaRegistro : DateTime
+  --
+  + asociarEquipoAfectado() : boolean
+  + consultarEquiposAfectados(idBarrera : int) : List<BarreraEquipoAfectado>
+  + inactivarAsociacion() : boolean
+}
+
+class Reporte {
+  - idReporte : int
+  - origenReporte : OrigenReporte
+  - estadoReporte : EstadoReporte
+  - /nivelConfianza : double
+  - observacionUsuario : String
+  - fechaReporte : DateTime
+  --
+  + crearReporte() : boolean
+  + consultarReporte(idReporte : int) : Reporte
+  + cambiarEstado(nuevoEstado : EstadoReporte) : boolean
+  + asociarBarrera(idBarrera : int) : boolean
+  + recalcularConfianza() : double
+}
+
+class ValidacionReporte {
+  - idValidacion : int
+  - esValido : boolean
+  - comentario : String
+  - fechaValidacion : DateTime
+  --
+  + registrarVoto() : boolean
+  + consultarVotos(idReporte : int) : List<ValidacionReporte>
+}
+
+class EvidenciaFotografica {
+  - idEvidencia : int
+  - urlFoto : String
+  - fechaSubida : DateTime
+  --
+  + subirEvidencia() : boolean
+  + consultarEvidencias(idReporte : int) : List<EvidenciaFotografica>
+}
+
+class Ruta {
+  - idRuta : int
+  - origenDireccion : String
+  - origenLatitud : double
+  - origenLongitud : double
+  - destinoDireccion : String
+  - destinoLatitud : double
+  - destinoLongitud : double
+  - distanciaTotalM : double
+  - duracionEstimadaMin : int
+  - /nivelAccesibilidad : NivelAccesibilidad
+  - /barrerasEsquivadas : int
+  - fechaCreacion : DateTime
+  --
+  + calcularRuta() : Ruta
+  + consultarRuta(idRuta : int) : Ruta
+}
+
+class SegmentoRuta {
+  - idSegmento : int
+  - ordenSegmento : int
+  - latInicio : double
+  - lonInicio : double
+  - latFin : double
+  - lonFin : double
+  - distanciaTramoM : double
+  - pendientePorcentaje : double
+  - tieneRampa : boolean
+  - tipoSuperficie : TipoSuperficie
+  --
+  + consultarSegmentos(idRuta : int) : List<SegmentoRuta>
+}
+
+class PuntoAccesible {
+  - idPuntoAccesible : int
+  - tipoElemento : TipoElemento
+  - nivelAccesibilidad : NivelAccesibilidadPunto
+  - equipoBeneficiadoPrincipal : EquipoAfectado
+  - latitud : double
+  - longitud : double
+  - descripcion : String
+  - estado : EstadoPunto
+  - fechaRegistro : DateTime
+  --
+  + registrarPuntoAccesible() : boolean
+  + consultarPuntoAccesible(idPuntoAccesible : int) : PuntoAccesible
+  + actualizarPuntoAccesible() : boolean
+  + cambiarEstado(nuevoEstado : EstadoPunto) : boolean
+}
+
+class EstadoRol <<enumeration>> {
+  ACTIVO
+  INACTIVO
+}
+class EstadoUsuario <<enumeration>> {
+  ACTIVO
+  INACTIVO
+  SUSPENDIDO
+}
+class TipoDiscapacidad <<enumeration>> {
+  MOTRIZ
+  VISUAL
+  AUDITIVA
+  COGNITIVA
+  MULTIPLE
+}
+class GradoDiscapacidad <<enumeration>> {
+  LEVE
+  MODERADO
+  SEVERO
+  TOTAL
+}
+class CondicionMovilidad <<enumeration>> {
+  USUARIO_SILLA_RUEDAS_TOTAL
+  MOVILIDAD_REDUCIDA_PUESTA_EN_PIE
+  AMBULANTE_CON_SOPORTE
+  MOVILIDAD_REDUCIDA_SIN_EQUIPO
+}
+class EquipoAsistencia <<enumeration>> {
+  SILLA_MANUAL
+  SILLA_ELECTRICA
+  MULETAS
+  BASTON
+  ANDADOR
+  NINGUNO
+}
+class AccionAuditoria <<enumeration>> {
+  CONSULTA
+  MODIFICACION
+}
+class ResultadoAuditoria <<enumeration>> {
+  AUTORIZADO
+  DENEGADO
+}
+class TipoBarrera <<enumeration>> {
+  ESCALERA_SIN_RAMPA
+  ANDEN_ROTO
+  HUECO
+  SEMAFORO_SIN_SONIDO
+  OBSTACULO_EN_ANDEN
+  PENDIENTE_EXCESIVA
+}
+class NivelGravedad <<enumeration>> {
+  BAJA
+  MEDIA
+  CRITICA_BLOQUEO_TOTAL
+}
+class EstadoBarrera <<enumeration>> {
+  REPORTADA
+  VERIFICADA
+  RESUELTA
+  INACTIVA
+}
+class EquipoAfectado <<enumeration>> {
+  SILLA_MANUAL
+  SILLA_ELECTRICA
+  MULETAS_BASTON
+  TODOS
+}
+class EstadoAsociacion <<enumeration>> {
+  ACTIVA
+  INACTIVA
+}
+class OrigenReporte <<enumeration>> {
+  NUEVA_BARRERA
+  ACTUALIZACION_ESTADO
+  ALERTA_TEMPORAL
+}
+class EstadoReporte <<enumeration>> {
+  PENDIENTE
+  CONFIRMADO
+  RECHAZADO
+  RESUELTO
+}
+class NivelAccesibilidad <<enumeration>> {
+  ALTA_ACCESIBILIDAD
+  ACCESIBLE_CON_PRECAUCION
+  ACCESIBILIDAD_LIMITADA
+}
+class TipoSuperficie <<enumeration>> {
+  PAVIMENTO_LISO
+  ADOQUIN
+  TIERRA
+  GRANITO_RUGOSO
+}
+class TipoElemento <<enumeration>> {
+  RAMPA_ACCESIBLE
+  ASCENSOR_URBANO
+  BANO_ADAPTADO
+  VADO_PEATONAL
+  PASO_NIVELADO
+  SEMAFORO_SONORO
+}
+class NivelAccesibilidadPunto <<enumeration>> {
+  EXCELENTE
+  BUENA
+  REGULAR
+}
+class EstadoPunto <<enumeration>> {
+  OPERATIVO
+  EN_MANTENIMIENTO
+  FUERA_DE_SERVICIO
+}
+
+
+' ---------- Asociaciones (con dirección para ordenar el dibujo) ----------
+Rol "1" -right- "0..*" Usuario : tiene
+Usuario "1" *-down- "0..1" PerfilMovilidad : posee
+PerfilMovilidad "1" -down- "0..*" AuditoriaAccesoPerfilMovilidad : es_auditado
+Usuario "1" -down- "0..*" AuditoriaAccesoPerfilMovilidad : audita
+Usuario "1" -down- "0..*" Ruta : solicita
+Ruta "1" *-down- "1..*" SegmentoRuta : compuesto_por
+Usuario "1" -right- "0..*" PuntoAccesible : registra
+Usuario "1" -right- "0..*" Reporte : realiza
+Usuario "1" -down- "0..*" ValidacionReporte : valida
+Reporte "1" *-down- "0..*" ValidacionReporte : evalua
+Reporte "1" *-down- "0..*" EvidenciaFotografica : contiene
+Barrera "0..1" -left- "0..*" Reporte : documenta
+Barrera "1" *-down- "0..*" BarreraEquipoAfectado : afecta_a
+
+' ---------- Dependencias <<use>> ----------
+Ruta ..left..> PerfilMovilidad : <<use>>
+Ruta ..right..> PuntoAccesible : <<use>>
+Ruta ..> Barrera : <<use>>
+
+' ---------- Enumeraciones en cuadrícula ----------
+together {
+  EstadoRol -[hidden]right- EstadoUsuario
+  EstadoUsuario -[hidden]right- TipoDiscapacidad
+  TipoDiscapacidad -[hidden]right- GradoDiscapacidad
+  GradoDiscapacidad -[hidden]right- CondicionMovilidad
+  CondicionMovilidad -[hidden]right- EquipoAsistencia
+  EquipoAsistencia -[hidden]right- AccionAuditoria
+  AccionAuditoria -[hidden]right- ResultadoAuditoria
+}
+together {
+  TipoBarrera -[hidden]right- NivelGravedad
+  NivelGravedad -[hidden]right- EstadoBarrera
+  EstadoBarrera -[hidden]right- EquipoAfectado
+  EquipoAfectado -[hidden]right- EstadoAsociacion
+  EstadoAsociacion -[hidden]right- OrigenReporte
+  OrigenReporte -[hidden]right- EstadoReporte
+}
+together {
+  NivelAccesibilidad -[hidden]right- TipoSuperficie
+  TipoSuperficie -[hidden]right- TipoElemento
+  TipoElemento -[hidden]right- NivelAccesibilidadPunto
+  NivelAccesibilidadPunto -[hidden]right- EstadoPunto
+}
+EstadoRol -[hidden]down- TipoBarrera
+TipoBarrera -[hidden]down- NivelAccesibilidad
+SegmentoRuta -[hidden]down- EstadoRol
+AuditoriaAccesoPerfilMovilidad -[hidden]down- EstadoRol
+BarreraEquipoAfectado -[hidden]down- EstadoRol
+
+' ---------- Notas ----------
+note bottom of PerfilMovilidad : {cada consulta o modificación de PerfilMovilidad\nregistra una AuditoriaAccesoPerfilMovilidad}
+note top of Reporte : {barreraAsociada es nula solo si origenReporte = NUEVA_BARRERA}\n{cambiarEstado() propaga a Barrera.cambiarEstado()\nsegún la Regla de negocio §2}
+note bottom of ValidacionReporte : {UNIQUE(idReporte, idUsuario)}\n{nivelConfianza se recalcula con recalcularConfianza()\nal registrar cada voto}
+note left of BarreraEquipoAfectado : {UNIQUE(idBarrera, equipoAfectado)}\n{asociar un equipo inactivo lo reactiva}
+note bottom of Ruta : {nivelAccesibilidad y barrerasEsquivadas se calculan una\nsola vez en calcularRuta(); la ruta es una instantánea histórica}
+note bottom of SegmentoRuta : {UNIQUE(idRuta, ordenSegmento)}
+@enduml
