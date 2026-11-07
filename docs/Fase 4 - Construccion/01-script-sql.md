@@ -33,6 +33,8 @@ Figura
 
 -- Historial: v1.0 2026-10-26 (creacion) -- cabecera de historial (GCS)
 
+-- v1.1 2026-11-06 (CRF-13: autorizacion de datos sensibles, RN-17)
+
 -- Nace de : Modelo Relacional \<- Diccionario de datos (3.1)
 
 -- Motor : MySQL 8 o MariaDB 10.4+ (XAMPP); InnoDB, utf8mb4. Nunca contiene DELETE.
@@ -415,7 +417,7 @@ INSERT INTO validacion_reporte (id_reporte, id_usuario, es_valido, comentario) V
 
 *Nota.* Elaboración propia a partir del diccionario de datos (sección 3.1).
 
-El script se ejecutó en MariaDB, la base de datos de XAMPP, sin errores. La muestra las doce tablas creadas y la muestra que las tres primeras verificaciones fallan como se espera, con lo que quedan comprobadas RN-01, RN-08 y RN-11. La cuarta, de la RN-17 (perfil sin autorización), se agregó con el CRF-13 y se ejecuta de la misma forma.
+El script se ejecutó en MariaDB, la base de datos de XAMPP, sin errores. La muestra las doce tablas creadas y la muestra que cada una de las cuatro verificaciones falla como se espera, con lo que quedan comprobadas RN-01, RN-08, RN-11 y RN-17. La última, de la RN-17, se agregó con el CRF-13: el INSERT de un perfil sin autorización falla con el error 4025 de la restricción ck_perfil_autorizacion.
 
 Figura  
 *Tablas creadas en la base de datos pau*
@@ -427,7 +429,7 @@ Figura
 Figura  
 *Verificación de las restricciones de la base de datos*
 
-<img src="../Imagenes/media/b0523902b465d6b9027937d29f46f75545d045fa.png" title="Verificación de las restricciones de la base de datos" style="width:6.5in;height:0.70833in" alt="Consola con los tres errores esperados al insertar datos que violan las reglas." />
+<img src="../Imagenes/media/d74756cef885e7b3eff8cf4a7300143827069904.png" title="Verificación de las restricciones de la base de datos" style="width:6.5in;height:1.01042in" alt="Consola con los cuatro errores esperados al insertar datos que violan las reglas." />
 
-*Nota.* Captura de la consola de MariaDB (XAMPP). Cada INSERT falla (verificaciones de las versiones anteriores al CRF-13): uq_rol_nombre (RN-01), ck_reporte_barrera (RN-08) y uq_validacion_reporte_usuario (RN-11).
+*Nota.* Captura de la consola de MariaDB (XAMPP). Cada INSERT falla: uq_rol_nombre (RN-01), ck_reporte_barrera (RN-08), uq_validacion_reporte_usuario (RN-11) y ck_perfil_autorizacion (RN-17, error 4025).
 
