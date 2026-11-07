@@ -18,7 +18,7 @@
 
 **Derechos de las personas con discapacidad.** Respaldo normativo internacional y nacional que promueve la inclusión (Organización de las Naciones Unidas, 2006; Ley 361 de 1997; Ley 1996 de 2019).
 
-**Normativa sobre accesibilidad y discapacidad en Colombia.** Estándares legales mínimos en inclusión física y digital (Ley 1618 de 2013; Ley 1346 de 2009; CONPES 166 de 2013; Decreto 2011 de 2017; Ley 1581 de 2012 — protección de datos sensibles).
+**Normativa sobre accesibilidad y discapacidad en Colombia.** Estándares legales mínimos en inclusión física y digital (Ley 1618 de 2013; Ley 1346 de 2009; Consejo Nacional de Política Económica y Social \[CONPES\], 2013; Decreto 2011 de 2017; Ley 1581 de 2012 — protección de datos sensibles).
 
 **Interfaz de usuario accesible.** Principios de diseño universal aplicados a plataformas digitales, siguiendo las WCAG 2.1 (World Wide Web Consortium, 2018; Esri, 2025).
 

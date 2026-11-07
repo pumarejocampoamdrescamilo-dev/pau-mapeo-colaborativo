@@ -38,6 +38,8 @@ El sistema se enfocará en facilitar la movilidad urbana de personas con discapa
 
 - Reemplazo de sistemas gubernamentales oficiales de infraestructura urbana.
 
+- Revocación de la autorización de datos sensibles ni supresión del perfil a solicitud de la persona: el consentimiento (RN-17) se pide al registrar el perfil, y la baja del perfil queda como trabajo futuro.
+
 El sistema se centra exclusivamente en proporcionar información colaborativa sobre accesibilidad y apoyar la planificación de rutas seguras, promoviendo la inclusión social y la autonomía de las personas con discapacidad física de movilidad reducida.
 
 ### Entidades principales del modelo de datos

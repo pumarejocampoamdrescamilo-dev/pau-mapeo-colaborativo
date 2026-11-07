@@ -18,7 +18,7 @@ Tabla
 | 7.0         | 27/10/2026 | Juan Pablo Mejía Urango y Andrés Camilo Pumarejo Campo | Cierre de la Fase 2 y Fase 3: matriz de trazabilidad (3.11), lectura cruzada y compuerta M2 (3.12), script SQL (4.1), repositorio Git con un commit por requisito (4.2) y código MVC del módulo de roles con su evidencia (4.3). Esta versión se registra como CRF-10 porque la línea base LB-1 ya estaba creada con el repositorio (documento hasta la versión 6.0 y código del módulo de roles).                                                                                                                                                                                                                                                                                                                           | CRF-10       |
 | 7.1         | 30/10/2026 | Juan Pablo Mejía Urango y Andrés Camilo Pumarejo Campo | Ajuste por indicación de la docente en la asesoría: el diagrama general de casos de uso se reemplaza por cuatro diagramas, uno por caso (CU-20 y CU-23 críticos; CU-01 y CU-36 no críticos), y los documentos del repositorio se organizan por fases.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | CRF-11       |
 | 7.2         | 03/11/2026 | Juan Pablo Mejía Urango y Andrés Camilo Pumarejo Campo | Ajuste por indicación de la docente: el diagrama general de casos de uso (34 casos) se conserva junto a los cuatro diagramas por caso (CU-20 y CU-23 críticos; CU-01 y CU-36 no críticos).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | CRF-12       |
-| 7.3         | 06/11/2026 | Juan Pablo Mejía Urango y Andrés Camilo Pumarejo Campo | Ajuste por la retroalimentación de la sustentación: se cubre el consentimiento para el tratamiento de datos sensibles (Ley 1581 de 2012) en todos los artefactos. Diccionario, MER, modelo relacional y diagrama de clases con los campos autorizacion_datos y fecha_autorizacion; HU-09 con el criterio CA-3; RF-09 ajustado; nueva RN-17; CU-09 con el flujo alternativo 3b; mockup MK-07 con la casilla de autorización; matriz de trazabilidad y script SQL con la restricción ck_perfil_autorizacion.                                                                                                                                                                                                                   | CRF-13       |
+| 7.3         | 06/11/2026 | Juan Pablo Mejía Urango y Andrés Camilo Pumarejo Campo | Ajuste por la retroalimentación de la sustentación: se cubre el consentimiento para el tratamiento de datos sensibles (Ley 1581 de 2012) en todos los artefactos. Diccionario, MER, modelo relacional y diagrama de clases con los campos autorizacion_datos y fecha_autorizacion; HU-09 con el criterio CA-3; RF-09 ajustado; nueva RN-17, que además exige informar la finalidad del tratamiento y su carácter voluntario; CU-09 con el flujo alternativo 3b; mockup MK-07 con la casilla de autorización; matriz de trazabilidad y script SQL con la restricción ck_perfil_autorizacion.                                                                                                                                  | CRF-13       |
 
 *Nota.* Elaboración propia. CRF: solicitud de cambio; LB: línea base.
 
@@ -42,13 +42,13 @@ Entidades principales del modelo de datos 16
 
 1.6 Marco teórico 19
 
-1.7 Recolección de la información y metodología de trabajo 20
+1.7 Recolección de la información y metodología de trabajo 21
 
 1.7.1 Instrumento de encuesta 21
 
 1.7.2 Síntesis de las respuestas 21
 
-1.7.3 Análisis de la encuesta 22
+1.7.3 Análisis de la encuesta 23
 
 1.7.4 Metodología de trabajo 23
 
@@ -140,7 +140,7 @@ Tabla 1. Control de versiones del documento 2
 
 Tabla 2. Módulos del alcance y entidades del modelo que los soportan 16
 
-Tabla 3. Referentes nacionales e internacionales sobre accesibilidad urbana 17
+Tabla 3. Referentes nacionales e internacionales sobre accesibilidad urbana 18
 
 Tabla 4. Hallazgos de la encuesta y elementos del proyecto que originan 23
 

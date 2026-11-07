@@ -73,7 +73,7 @@ Tabla
 | autorizacion_datos   | BOOLEAN  | — / NOT NULL   | No / Atributo      | —              | Autorización expresa y previa del titular para tratar sus datos sensibles (Ley 1581 de 2012). Solo se registra el perfil si vale verdadero (RN-17). |
 | fecha_autorizacion   | DATETIME | — / NOT NULL   | No / Atributo      | —              | Fecha y hora en que el titular dio la autorización. Por defecto: CURRENT_TIMESTAMP.                                                                 |
 
-*Nota.* Propósito: Registrar la condición física y el equipamiento de asistencia del usuario para alimentar el motor de búsqueda de rutas. Cláusula de Protección de Datos Sensibles (Ley 1581 de 2012): tipo_discapacidad y grado_discapacidad son datos sensibles y exigen autorización explícita (campos autorizacion_datos y fecha_autorizacion, RN-17), cifrado en reposo (AES-256), acceso restringido por rol y uso exclusivo para el cálculo de accesibilidad.
+*Nota.* Propósito: Registrar la condición física y el equipamiento de asistencia del usuario para alimentar el motor de búsqueda de rutas. Cláusula de Protección de Datos Sensibles (Ley 1581 de 2012): tipo_discapacidad y grado_discapacidad son datos sensibles y exigen autorización explícita (campos autorizacion_datos y fecha_autorizacion, RN-17), cifrado en reposo (AES-256), acceso restringido por rol y uso exclusivo para el cálculo de accesibilidad. La revocación de la autorización y la supresión del perfil quedan fuera del alcance de esta versión (sección 1.2).
 
 Tabla  
 *Campos de la tabla barrera*

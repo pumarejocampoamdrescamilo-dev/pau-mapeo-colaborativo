@@ -477,7 +477,7 @@ Tabla
 <p><strong>Escenario: CA-1 Registro exitoso del perfil de movilidad</strong></p>
 <blockquote>
 <p><em># registrarPerfil() · RN-04 (relación 1:1 con usuario, FK UNIQUE) y RN-17 (autorización de datos sensibles, Ley 1581 de 2012)</em></p>
-<p>Cuando Marcela autoriza expresamente el tratamiento de sus datos sensibles y registra su perfil con tipo de discapacidad "MOTRIZ", grado "MODERADO", condición "USUARIO_SILLA_RUEDAS_TOTAL" y equipo "SILLA_MANUAL"</p>
+<p>Cuando Marcela, informada de que sus datos se usan solo para calcular rutas accesibles y de que registrarlos es voluntario, autoriza expresamente el tratamiento de sus datos sensibles y registra su perfil con tipo de discapacidad "MOTRIZ", grado "MODERADO", condición "USUARIO_SILLA_RUEDAS_TOTAL" y equipo "SILLA_MANUAL"</p>
 <p>Entonces el perfil queda registrado asociado únicamente a Marcela</p>
 <p>Y el sistema guarda la autorización y la fecha en que la dio</p>
 </blockquote>

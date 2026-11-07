@@ -408,7 +408,7 @@ Tabla
 </tr>
 <tr class="even">
 <td><strong>Flujo básico (Evento / Respuesta)</strong></td>
-<td><p>1. El PCD solicita registrar su perfil de movilidad. / El sistema presenta el formulario con la casilla de autorización para el tratamiento de datos sensibles.</p>
+<td><p>1. El PCD solicita registrar su perfil de movilidad. / El sistema presenta el formulario con la finalidad del tratamiento (calcular rutas accesibles), la aclaración de que registrar el perfil es voluntario y la casilla de autorización para el tratamiento de datos sensibles.</p>
 <p>2. El PCD ingresa tipo y grado de discapacidad, condición de movilidad, equipo de asistencia y parámetros de ruta, y marca la autorización. / El sistema recibe los datos.</p>
 <p>3. — / El sistema verifica que el PCD haya autorizado el tratamiento de sus datos (RN-17) y que no tenga ya un perfil registrado (RN-04).</p>
 <p>4. — / El sistema registra el perfil asociado únicamente a ese usuario, con la autorización y la fecha en que se dio.</p></td>
